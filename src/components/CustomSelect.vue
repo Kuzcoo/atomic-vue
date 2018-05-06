@@ -12,7 +12,7 @@
       :defaultValue="defaultValue"
       @focus.native="handleFocus"
       @blur.native="closeSelect"
-      @keyup.native="updateValue">
+      @input="updateValue">
     </field>
     <caret-icon class="select__caret"></caret-icon>
 
@@ -86,16 +86,13 @@
       filterOptionsByValue(value) {
         const regexp = new RegExp(value.toLowerCase(), 'g');
 
+        this.openSelect();
         this.filteredOptions = this.options.filter(option => (
           regexp.test(option.name.toLowerCase())
         ));
       },
-      updateValue(e) {
-        const value = e.target.value;
-
+      updateValue(value) {
         if (!!this.onChange) {
-          this.onChange(value);
-
           if (!!this.combobox) {
             this.filterOptionsByValue(value);
           }

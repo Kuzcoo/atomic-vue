@@ -1,7 +1,10 @@
 <template>
   <form @submit.prevent>
 
-    <field type='text' defaultValue="Type something">
+    <field 
+      type='text' 
+      defaultValue="Name"
+      @input="updateName">
     </field>
 
     <custom-select
@@ -47,7 +50,8 @@ import ButtonSecondary from './ButtonSecondary.vue';
         {id: 3, name: 'Espagne'}
       ],
       fruitSelected: '',
-      countrySelected: ''
+      countrySelected: '',
+      name: ''
     }),
     methods: {
       chooseFruit(value) {
@@ -58,6 +62,9 @@ import ButtonSecondary from './ButtonSecondary.vue';
       },
       updateCountryValue(value) {
         this.countrySelected = value;
+      },
+      updateName(value) {
+        this.name = value;
       }
     },
     components: {
